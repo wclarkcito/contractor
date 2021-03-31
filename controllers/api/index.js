@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const homeownerRoutes = require('./homewonerRoutes');
+const homeownerRoutes = require('./homeownerRoutes');
 const contractorRoutes = require('./contractorRoutes');
 
 router.use('/homeowners', homeownerRoutes);
