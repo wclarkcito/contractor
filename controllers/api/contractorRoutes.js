@@ -11,7 +11,6 @@ router.get("/", async (req, res) => {
       res.status(500).json(err);
     }
   });
-const { Contractor } = require('../../models')
 
 // Returns a list of a specefic contractor by id
 router.get("/", async (req, res) => {
