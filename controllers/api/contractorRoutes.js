@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
   });
 
 // Returns a list of a specefic contractor by id
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
       const getOneContractor = await Contractor.findByPk(req.params.id, {
       });
