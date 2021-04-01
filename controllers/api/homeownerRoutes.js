@@ -26,8 +26,17 @@ router.get("/:id", async (req, res) => {
 // Adds a new homeowner
 router.post('/', async (req, res) => {
     try {
-      const addHomeowner = await Homeowner.create(req.body);
-      res.status(200).json(addHomeowner);
+      const addHomeowner = await Homeowner.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+      });
+  
+      req.session.save(() => {
+        req.session.loggedIn = true;
+  
+        res.status(200).json(addHomeowner);
+      });
     } catch (error) {
       res.status(500).json(err);
     }
@@ -62,4 +71,5 @@ router.delete('/:id', async (req, res) => {
     }
   });
 
+  
 module.exports = router;
