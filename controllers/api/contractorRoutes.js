@@ -26,14 +26,11 @@ router.get("/:id", async (req, res) => {
 // Adds a new contractor
 router.post('/', async (req, res) => {
     try {
-      const addContractor = await Contractor.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-      });
-  
+      const addContractor = await Contractor.create(req.body);
+
       req.session.save(() => {
-        req.session.loggedIn = true;
+        req.session.user_id = addContractor.id;
+        req.session.logged_in = true;
   
         res.status(200).json(addContractor);
       });
