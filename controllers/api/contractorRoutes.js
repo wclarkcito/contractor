@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Contractor } = require('../../models');
 
 // Returns a list of all contractors
+// route starts at /api/contractors
 router.get("/", async (req, res) => {
     try {
       const getAllContractors = await Contractor.findAll({
@@ -13,6 +14,7 @@ router.get("/", async (req, res) => {
   });
 
 // Returns a list of a specefic contractor by id
+// route starts at /api/contractors/:id
 router.get("/:id", async (req, res) => {
     try {
       const getOneContractor = await Contractor.findByPk(req.params.id, {
@@ -34,7 +36,7 @@ router.post('/', async (req, res) => {
   
         res.status(200).json(addContractor);
       });
-    } catch (error) {
+    } catch (err) {
       res.status(500).json(err);
     }
   });

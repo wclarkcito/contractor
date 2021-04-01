@@ -18,6 +18,9 @@ const contractors = [
   },
 ];
 
-const contractorData = () => Contractor.bulkCreate(contractors);
+const contractorData = () => Contractor.bulkCreate(contractors, {
+  individualHooks: true,
+  returning: true,
+});
 
 module.exports = contractorData;
