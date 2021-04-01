@@ -18,6 +18,9 @@ const homeowners = [
   },
 ];
 
-const homeownerData = () => Homeowner.bulkCreate(homeowners);
+const homeownerData = () => Homeowner.bulkCreate(homeowners, {
+  individualHooks: true,
+  returning: true,
+});
 
 module.exports = homeownerData;
