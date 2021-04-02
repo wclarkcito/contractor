@@ -40,7 +40,7 @@ Contractor.init(
         hooks: {
             beforeCreate: async (newContractorData) => {
                 newContractorData.password = await bcrypt.hash(newContractorData.password, 10);
-                return newUserData;
+                return newContractorData;
             },
             beforeUpdate: async (updatedData) => {
                 updatedData.password = await bcrypt.hash(updatedData.password, 10);
