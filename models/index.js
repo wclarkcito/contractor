@@ -1,24 +1,15 @@
-const Contractor = require('./Contractor')
-const Homeowner = require('./Homeowner')
-const Projects = require('./Projects')
+const User = require('./User')
+const Projects = require('./Projects');
 
 
 
-// Contractor.belongsTo(Homeowner, {
-//     foreignKey: `id`,
-//     onDelete: 'CASCADE',
-// });
-
-Contractor.belongsTo(Projects, {
+User.belongsTo(Projects, {
     foreignKey: `id`,
     onDelete: 'CASCADE',
 });
 
-// Homeowner.belongsTo(Contractor, {
-//     foreignKey: `id`,
-//     onDelete: 'CASCADE',
-// });
-Homeowner.belongsTo(Projects, {
+
+Projects.belongsTo(User, {
     foreignKey: `id`,
     onDelete: 'CASCADE',
 });
