@@ -15,10 +15,12 @@ Projects.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+
         body: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+
         quote: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -27,7 +29,6 @@ Projects.init(
         homeowner_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
-
             references: {
                 model: 'user',
                 key: 'id'
@@ -36,9 +37,7 @@ Projects.init(
 
         contractor_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-
-
+            allowNull: true,
             references: {
                 model: 'user',
                 key: 'id'
