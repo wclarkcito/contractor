@@ -13,20 +13,20 @@ router.get("/", async (req, res) => {
     }
   });
 
-// Returns a list of a specefic user by id
-// Route located at /api/users/:id
+// Returns a specefic project by id
+// Route located at /api/projects/:id
 router.get("/:id", async (req, res) => {
     try {
-      const getOneUser = await User.findByPk(req.params.id, {
+      const getOneProject = await Projects.findByPk(req.params.id, {
       });
-      res.status(200).json(getOneUser);
+      res.status(200).json(getOneProject);
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
-//add project
-// route located at /api/projects
+// Creates a project
+// Route located at /api/projects
 router.post('/', async (req, res) => {
     try {
       const addProject = await Projects.create(req.body);
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
     }
   });
 
-// route located at /api/projects
+// Route located at /api/projects
 // -- need to add "authentication"
 router.put('/:id', async (req, res) => {
 try {

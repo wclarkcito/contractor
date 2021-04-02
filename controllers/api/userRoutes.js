@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-// Returns a list of a specefic user by id
+// Returns a specefic user by id
 // Route located at /api/users/:id
 router.get("/:id", async (req, res) => {
     try {
@@ -114,7 +114,7 @@ router.delete('/:id', async (req, res) => {
         }
       });
       res.status(200).json(deleteUser);
-    } catch (error) {
+    } catch (err) {
       res.status(500).json(err);
     }
   });
