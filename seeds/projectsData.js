@@ -1,6 +1,6 @@
-const { User } = require("../models");
+const { Projects } = require("../models");
 
-const users = [
+const projects = [
     {
         title: "Plumbing",
         body: "The crapper backed up onto the floor and down the stairs I'm drowning in feces",
@@ -41,9 +41,9 @@ const users = [
 
 ];
 
-const userData = () => User.bulkCreate(users, {
+const projectData = () => Projects.bulkCreate(projects, {
     individualHooks: true,
     returning: true,
 });
 
-module.exports = userData;
+module.exports = projectData;
