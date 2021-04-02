@@ -17,23 +17,10 @@ User.init(
             autoIncrement: true,
         },
 
-        homeowner_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-
-        contractor_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-        },
         license_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
-            primaryKey: true,
+
 
         },
 
