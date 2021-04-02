@@ -2,11 +2,10 @@ const router = require('express').Router();
 const { Contractor } = require('../../models');
 
 // Returns a list of all contractors
-// route located at /api/contractors
+// Route located at /api/contractors/
 router.get("/", async (req, res) => {
     try {
-      const getAllContractors = await Contractor.findAll({
-      });
+      const getAllContractors = await Contractor.findAll();
       res.status(200).json(getAllContractors);
     } catch (error) {
       res.status(500).json(err);
@@ -14,7 +13,7 @@ router.get("/", async (req, res) => {
   });
 
 // Returns a list of a specefic contractor by id
-// route located at /api/contractors/:id
+// Route located at /api/contractors/:id
 router.get("/:id", async (req, res) => {
     try {
       const getOneContractor = await Contractor.findByPk(req.params.id, {
@@ -26,6 +25,7 @@ router.get("/:id", async (req, res) => {
   });
 
 // Adds a new contractor
+// Route located at /api/contractors/
 router.post('/', async (req, res) => {
     try {
       const addContractor = await Contractor.create(req.body);
@@ -42,6 +42,7 @@ router.post('/', async (req, res) => {
   });
 
 // Contractor login  
+// Route located at /api/contractors/login
 router.post('/login', async (req, res) => {
   try {
     const userData = await Contractor.findOne({ where: { email: req.body.email } });
@@ -75,6 +76,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Contractor logout
+// Route located at /api/contractors/logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -84,20 +86,6 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
-
-// Updates a contractor by id
-router.put('/:id', async (req, res) => {
-    try {
-      const updateContractor = await Contractor.update(req.body, {
-        where: {
-          id: req.params.id
-        }
-      });
-      res.status(200).json(updateContractor);
-    } catch (error) {
-      res.status(500).json(err);
-    }
-  });
 
 // Deletes a contractor by id
 router.delete('/:id', async (req, res) => {
