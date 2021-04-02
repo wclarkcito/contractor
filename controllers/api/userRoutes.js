@@ -1,48 +1,51 @@
 const router = require('express').Router();
-const { Homeowner } = require('../../models');
+const { User } = require('../../models');
 
-// Returns a list of all homeowner
+// Returns a list of all users
+// Route located at /api/users/
 router.get("/", async (req, res) => {
     try {
-      const getAllHomeowners = await Homeowner.findAll({
-      });
-      res.status(200).json(getAllHomeowners);
-    } catch (error) {
+      const getAllUsers = await User.findAll();
+      res.status(200).json(getAllUsers);
+    } catch (err) {
       res.status(500).json(err);
     }
   });
 
-// Returns a list of a specefic homeowner by id
+// Returns a list of a specefic user by id
+// Route located at /api/users/:id
 router.get("/:id", async (req, res) => {
     try {
-      const getOneHomeowner = await Homeowner.findByPk(req.params.id, {
+      const getOneUser = await User.findByPk(req.params.id, {
       });
-      res.status(200).json(getOneHomeowner);
-    } catch (error) {
+      res.status(200).json(getOneUser);
+    } catch (err) {
       res.status(500).json(err);
     }
   });
 
-// Adds a new homeowner
+// Adds a new user
+// Route located at /api/users/
 router.post('/', async (req, res) => {
     try {
-      const addHomeowner = await Homeowner.create(req.body);
+      const addUser = await User.create(req.body);
 
       req.session.save(() => {
-        req.session.user_id = addHomeowner.id;
+        req.session.user_id = addUser.id;
         req.session.logged_in = true;
   
-        res.status(200).json(addHomeowner);
+        res.status(200).json(addUser);
       });
-    } catch (error) {
+    } catch (err) {
       res.status(500).json(err);
     }
   });
 
-// Homeowner login  
+// User login  
+// Route located at /api/users/login
 router.post('/login', async (req, res) => {
   try {
-    const userData = await Homeowner.findOne({ where: { email: req.body.email } });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
       res
@@ -72,7 +75,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Homeowner logout
+// User logout
+// Route located at /api/users/logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -83,34 +87,18 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// Updates a homeowner by id
-router.put('/:id', async (req, res) => {
-    try {
-      const updateHomeowner = await Homeowner.update(req.body, {
-        where: {
-          id: req.params.id
-        }
-      });
-      res.status(200).json(updateHomeowner);
-    } catch (error) {
-      res.status(500).json(err);
-    }
-  });
-
-// Deletes a homeowner by id
+// Deletes a user by id
 router.delete('/:id', async (req, res) => {
-    // delete a category by its `id` value
     try {
-      const deleteHomeowner = await Homeowner.destroy({
+      const deleteUser = await User.destroy({
         where: {
           id: req.params.id
         }
       });
-      res.status(200).json(deleteHomeowner);
+      res.status(200).json(deleteUser);
     } catch (error) {
       res.status(500).json(err);
     }
   });
 
-  
 module.exports = router;
