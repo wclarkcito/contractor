@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { Projects } = require('../../models');
 const withAuth = require('../../utils/auth')
 
+// Returns a list of all projects
+// Route located at /api/projects
 router.get("/", async (req, res) => {
     try {
       const getAllProjects = await Projects.findAll();
@@ -13,15 +15,15 @@ router.get("/", async (req, res) => {
 
 // Returns a list of a specefic user by id
 // Route located at /api/users/:id
-// router.get("/:id", async (req, res) => {
-//     try {
-//       const getOneUser = await User.findByPk(req.params.id, {
-//       });
-//       res.status(200).json(getOneUser);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
+router.get("/:id", async (req, res) => {
+    try {
+      const getOneUser = await User.findByPk(req.params.id, {
+      });
+      res.status(200).json(getOneUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 //add project
 // route located at /api/projects
