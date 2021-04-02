@@ -1,8 +1,9 @@
 const router = require('express').Router();
-const homeownerRoutes = require('./homeownerRoutes');
-const contractorRoutes = require('./contractorRoutes');
+const userRoutes = require('./userRoutes');
+const projectRoutes = require('./projectRoutes');
 
-router.use('/homeowners', homeownerRoutes);
-router.use('/contractors', contractorRoutes);
+// These routes start with /api
+router.use('/users', userRoutes);
+router.use('/projects', projectRoutes);
 
 module.exports = router;

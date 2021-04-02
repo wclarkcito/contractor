@@ -2,13 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Contractor extends Model {
+class User extends Model {
     checkPassword(loginPw) {
         return bcrypt.compareSync(loginPw, this.password);
     }
 }
 
-Contractor.init(
+User.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -16,6 +16,12 @@ Contractor.init(
             primaryKey: true,
             autoIncrement: true,
         },
+
+        license_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+        },
+
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -35,11 +41,15 @@ Contractor.init(
                 len: [8],
             },
         },
+        user_type: {
+            type: DataTypes.ENUM("homeowner", "contractor"),
+            allowNull: false,
+        }
     },
     {
         hooks: {
-            beforeCreate: async (newContractorData) => {
-                newContractorData.password = await bcrypt.hash(newContractorData.password, 10);
+            beforeCreate: async (newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
             },
             beforeUpdate: async (updatedData) => {
@@ -51,8 +61,8 @@ Contractor.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'contractor',
+        modelName: 'user',
     }
 );
 
-module.exports = Contractor;
+module.exports = User;

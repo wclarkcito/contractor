@@ -1,25 +1,51 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Project extends Model { }
+class Projects extends Model { }
 
-Project.init(
+Projects.init(
     {
-
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+        },
         title: {
             type: DataTypes.STRING,
+            allowNull: false,
         },
 
         body: {
             type: DataTypes.STRING,
+            allowNull: false,
         },
 
         quote: {
             type: DataTypes.INTEGER,
+            allowNull: false,
         },
 
-    },
+        homeowner_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        },
 
+        contractor_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+
+
+            references: {
+                model: 'user',
+                key: 'id'
+            }
+        },
+    },
     {
         sequelize,
         timestamps: false,
@@ -27,8 +53,6 @@ Project.init(
         underscored: true,
         modelName: 'projects',
     }
-
-
 );
 
-module.exports = Project;
+module.exports = Projects;
