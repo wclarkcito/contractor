@@ -1,51 +1,51 @@
 const router = require('express').Router();
-const { Contractor } = require('../../models');
+const { User } = require('../../models');
 
-// Returns a list of all contractors
-// Route located at /api/contractors/
+// Returns a list of all users
+// Route located at /api/users/
 router.get("/", async (req, res) => {
     try {
-      const getAllContractors = await Contractor.findAll();
-      res.status(200).json(getAllContractors);
-    } catch (error) {
+      const getAllUsers = await User.findAll();
+      res.status(200).json(getAllUsers);
+    } catch (err) {
       res.status(500).json(err);
     }
   });
 
-// Returns a list of a specefic contractor by id
-// Route located at /api/contractors/:id
+// Returns a list of a specefic user by id
+// Route located at /api/users/:id
 router.get("/:id", async (req, res) => {
     try {
-      const getOneContractor = await Contractor.findByPk(req.params.id, {
+      const getOneUser = await User.findByPk(req.params.id, {
       });
-      res.status(200).json(getOneContractor);
-    } catch (error) {
+      res.status(200).json(getOneUser);
+    } catch (err) {
       res.status(500).json(err);
     }
   });
 
-// Adds a new contractor
-// Route located at /api/contractors/
+// Adds a new user
+// Route located at /api/users/
 router.post('/', async (req, res) => {
     try {
-      const addContractor = await Contractor.create(req.body);
+      const addUser = await User.create(req.body);
 
       req.session.save(() => {
-        req.session.user_id = addContractor.id;
+        req.session.user_id = addUser.id;
         req.session.logged_in = true;
   
-        res.status(200).json(addContractor);
+        res.status(200).json(addUser);
       });
     } catch (err) {
       res.status(500).json(err);
     }
   });
 
-// Contractor login  
-// Route located at /api/contractors/login
+// User login  
+// Route located at /api/users/login
 router.post('/login', async (req, res) => {
   try {
-    const userData = await Contractor.findOne({ where: { email: req.body.email } });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
       res
@@ -75,8 +75,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Contractor logout
-// Route located at /api/contractors/logout
+// User logout
+// Route located at /api/users/logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -87,16 +87,15 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// Deletes a contractor by id
+// Deletes a user by id
 router.delete('/:id', async (req, res) => {
-    // delete a category by its `id` value
     try {
-      const deleteContractor = await Contractor.destroy({
+      const deleteUser = await User.destroy({
         where: {
           id: req.params.id
         }
       });
-      res.status(200).json(deleteContractor);
+      res.status(200).json(deleteUser);
     } catch (error) {
       res.status(500).json(err);
     }

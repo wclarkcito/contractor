@@ -23,6 +23,9 @@ Project.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        homeowner_id
+
+        contractor_id
     },
     {
         sequelize,
