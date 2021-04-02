@@ -20,8 +20,6 @@ User.init(
         license_id: {
             type: DataTypes.INTEGER,
             allowNull: true,
-
-
         },
 
         name: {
