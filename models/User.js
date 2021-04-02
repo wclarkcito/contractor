@@ -2,13 +2,13 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Homeowner extends Model {
+class User extends Model {
     checkPassword(loginPw) {
         return bcrypt.compareSync(loginPw, this.password);
     }
 }
 
-Homeowner.init(
+User.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -16,6 +16,14 @@ Homeowner.init(
             primaryKey: true,
             autoIncrement: true,
         },
+
+        license_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+
+
+        },
+
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -38,8 +46,8 @@ Homeowner.init(
     },
     {
         hooks: {
-            beforeCreate: async (newHomeownerData) => {
-                newHomeownerData.password = await bcrypt.hash(newHomeownerData.password, 10);
+            beforeCreate: async (newUserData) => {
+                newUserData.password = await bcrypt.hash(newUserData.password, 10);
                 return newUserData;
             },
             beforeUpdate: async (updatedData) => {
@@ -51,8 +59,8 @@ Homeowner.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'homeowner',
+        modelName: 'user',
     }
 );
 
-module.exports = Homeowner;
+module.exports = User;
