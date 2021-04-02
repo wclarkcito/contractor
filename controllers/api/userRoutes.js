@@ -24,6 +24,21 @@ router.get("/:id", async (req, res) => {
     }
   });
 
+// Return users with contractor id
+// Route located at /api/users/
+router.get("/contractors", async (req, res) => {
+  try {
+    const getContractors = await User.findAll({
+      where: {
+        user_type: "contractor"
+      }
+    });
+    res.status(200).json(getContractors);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Adds a new user
 // Route located at /api/users/
 router.post('/', async (req, res) => {

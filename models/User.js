@@ -43,6 +43,10 @@ User.init(
                 len: [8],
             },
         },
+        user_type: {
+            type: DataTypes.ENUM("homeowner", "contractor"),
+            allowNull: false,
+        }
     },
     {
         hooks: {
