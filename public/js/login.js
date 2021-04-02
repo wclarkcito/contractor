@@ -28,22 +28,25 @@ const signupFormHandler = async (event) => {
   const name = document.querySelector('#name-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
-  const homeOwner = document.querySelector('#dropdownlist').value.trim();
+  const contORhome = document.querySelector('#dropdownlist').value;
+  console.log(contORhome);
+  if (name && email && password && contORhome) {
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, password, user_type: contORhome }),
+      headers: { 'Content-Type': 'application/json' },
+    });
 
-  console.log(homeOwner);
-  // if (name && email && password) {
-  //   const response = await fetch('/api/users', {
-  //     method: 'POST',
-  //     body: JSON.stringify({ name, email, password }),
-  //     headers: { 'Content-Type': 'application/json' },
-  //   });
-
-  //   if (response.ok) {
-  //     document.location.replace('/profile');
-  //   } else {
-  //     alert(response.statusText);
-  //   }
-  // }
+    if (response.ok) {
+      if(contORhome === "contractor"){
+        document.location.replace('/contractor'); 
+      } else {
+        document.location.replace('/profile');
+      }
+    } else {
+      alert(response.statusText);
+    }
+  }
 };
 
 document
