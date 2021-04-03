@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-// Returns a specefic user by id
+// Returns a specific user by id
 // Route located at /api/users/:id
 router.get("/:id", async (req, res) => {
     try {

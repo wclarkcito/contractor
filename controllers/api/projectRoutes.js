@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-// Returns a specefic project by id
+// Returns a specific project by id
 // Route located at /api/projects/:id
 router.get("/:id", async (req, res) => {
     try {
@@ -36,8 +36,9 @@ router.post('/', async (req, res) => {
     }
   });
 
+// Updates contractor_id on project when contractor bids
 // Route located at /api/projects
-// -- need to add "authentication"
+// -- will need to add "withAuth" authentication
 router.put('/:id', async (req, res) => {
 try {
     const updatedProject = await Projects.update({
@@ -53,5 +54,20 @@ try {
     res.status(500).json(err);
   }
 })
+
+// Deletes a project by id
+// Route located at /api/projects/:id
+router.delete('/:id', async (req, res) => {
+  try {
+    const deleteProject = await Projects.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    res.status(200).json(deleteProject);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;
