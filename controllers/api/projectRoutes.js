@@ -38,8 +38,7 @@ router.post('/', async (req, res) => {
 
 // Updates contractor_id on project when contractor bids
 // Route located at /api/projects
-// -- will need to add "withAuth" authentication
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
 try {
     const updatedProject = await Projects.update({
         // new info
