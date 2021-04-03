@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     }
   });
 
-// Returns a list of a specefic user by id
+// Returns a specific user by id
 // Route located at /api/users/:id
 router.get("/:id", async (req, res) => {
     try {
@@ -24,13 +24,13 @@ router.get("/:id", async (req, res) => {
     }
   });
 
-// Return users with contractor id
-// Route located at /api/users/
+// Return only contractors
+// Route located at /api/users/contractors
 router.get("/contractors", async (req, res) => {
   try {
     const getContractors = await User.findAll({
       where: {
-        user_type: "contractor"
+        user_type: 'contractor',
       }
     });
     res.status(200).json(getContractors);
@@ -39,7 +39,22 @@ router.get("/contractors", async (req, res) => {
   }
 });
 
-// Adds a new user
+// Return only homeowners
+// Route located at /api/users/homeowners
+router.get("/homeowners", async (req, res) => {
+  try {
+    const getHomeowners = await User.findAll({
+      where: {
+        user_type: 'homeowner',
+      }
+    });
+    res.status(200).json(getHomeowners);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Creates a new user
 // Route located at /api/users/
 router.post('/', async (req, res) => {
     try {
@@ -62,14 +77,14 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-
+    console.log(userData)
     if (!userData) {
       res
         .status(400)
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-
+    
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -82,7 +97,7 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      req.session.user_type = addUser.user_type;
+      req.session.user_type = userData.user_type;
       
       res.json({ user: userData, message: 'You are now logged in!' });
     });
@@ -105,6 +120,7 @@ router.post('/logout', (req, res) => {
 });
 
 // Deletes a user by id
+// Route located at /api/users/:id
 router.delete('/:id', async (req, res) => {
     try {
       const deleteUser = await User.destroy({
@@ -113,7 +129,7 @@ router.delete('/:id', async (req, res) => {
         }
       });
       res.status(200).json(deleteUser);
-    } catch (error) {
+    } catch (err) {
       res.status(500).json(err);
     }
   });

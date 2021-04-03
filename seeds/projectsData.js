@@ -44,8 +44,6 @@ const projects = [
         homeowner_id: 6,
         contractor_id: 5,
     },
-
-
 ];
 
 const projectsData = () => Projects.bulkCreate(projects, {
