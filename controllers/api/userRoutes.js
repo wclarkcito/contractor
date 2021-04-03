@@ -24,7 +24,7 @@ router.get("/:id", async (req, res) => {
     }
   });
 
-// Return only users who are contractors
+// Return only contractors
 // Route located at /api/users/contractors
 router.get("/contractors", async (req, res) => {
   try {
@@ -34,6 +34,21 @@ router.get("/contractors", async (req, res) => {
       }
     });
     res.status(200).json(getContractors);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Return only homeowners
+// Route located at /api/users/homeowners
+router.get("/homeowners", async (req, res) => {
+  try {
+    const getHomeowners = await User.findAll({
+      where: {
+        user_type: 'homeowner',
+      }
+    });
+    res.status(200).json(getHomeowners);
   } catch (err) {
     res.status(500).json(err);
   }
