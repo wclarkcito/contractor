@@ -40,7 +40,7 @@ Projects.init(
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
-                model: 'projects',
+                model: 'user',
                 key: 'id'
             }
         },

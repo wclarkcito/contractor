@@ -5,14 +5,12 @@ const projectsData = require('./projectsData');
 const seedAll = async () => {
   await sequelize.sync({ force: true });
 
+  await userData();
   await projectsData();
   console.log(projectsData)
-  await userData();
+  
 
   process.exit(0);
 };
-
-
-
 
 seedAll();
