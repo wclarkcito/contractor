@@ -72,8 +72,12 @@ router.get('/profile', withAuth, async (req, res) => {
 
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
+  if (req.session.logged_in && req.session.user_type === "homeowner") {
     res.redirect('/profile');
+    return;
+  }
+  else if (req.session.logged_in && req.session.user_type === "contractor") {
+    res.redirect('/contractor');
     return;
   }
   res.render('login');
@@ -86,16 +90,16 @@ router.get('/contractor', withAuth, async (req, res) => {
       attributes: { exclude: ['password'] },
       include: [{ model: Projects }],
     });
-
+    
     const user = userData.get({ plain: true });
-
+    console.log(user)
     const projectData = await Projects.findAll();
     const projects = projectData.map((project) => project.get({ plain: true }));
 
 
     res.render('contractor', {
       ...user,
-      projects,
+      //projects, // delete later if need to remove unclaimed projects
       logged_in: true
     });
   } catch (err) {
