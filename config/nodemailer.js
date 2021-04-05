@@ -58,13 +58,8 @@ const signup = (req, res) => {
         .catch((error) => console.error(error));
 };
 
-
-
-
-
-
-
 module.exports = {
     transporter,
     MailGenerator,
+    signup()
 };

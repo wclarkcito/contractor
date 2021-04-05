@@ -27,9 +27,12 @@ router.get("/:id", async (req, res) => {
 
 // Creates a project
 // Route located at /api/projects
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
-      const addProject = await Projects.create(req.body);
+      const addProject = await Projects.create({
+        ...req.body, 
+        homeowner_id: req.session.user_id
+      });
         res.status(200).json(addProject);
     } catch (err) {
       res.status(500).json(err);
@@ -42,7 +45,7 @@ router.put('/:id', withAuth, async (req, res) => {
 try {
     const updatedProject = await Projects.update({
         // new info
-        contractor_id: req.body.contractor_id
+        contractor_id: req.session.user_id
     }, {
         where: {
             id: req.params.id
