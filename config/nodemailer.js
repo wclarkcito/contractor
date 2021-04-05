@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 
+
 const { EMAIL, MAIN_URL } = require("../config");
 
 

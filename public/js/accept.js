@@ -1,3 +1,5 @@
+const signup = require('../../config')
+
 const acceptProject = async () => {
     console.log(window.location)
     const id = window.location.pathname.split("/")[2]
@@ -15,7 +17,6 @@ const acceptProject = async () => {
 }
 
 
-
 document
 .getElementById("accepted")
-.addEventListener("click", acceptProject);
+.addEventListener("click", acceptProject, signup);

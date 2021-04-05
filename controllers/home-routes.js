@@ -99,7 +99,7 @@ router.get('/contractor', withAuth, async (req, res) => {
 
     res.render('contractor', {
       ...user,
-      //projects, // delete later if need to remove unclaimed projects
+      projects, // delete later if need to remove unclaimed projects
       logged_in: true
     });
   } catch (err) {
