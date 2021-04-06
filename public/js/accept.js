@@ -1,5 +1,3 @@
-const nodeMailer = require('../../controller/appController')
-
 const acceptProject = async () => {
     console.log(window.location)
     const id = window.location.pathname.split("/")[2]
@@ -10,6 +8,20 @@ const acceptProject = async () => {
         },
       }); 
       if (response.ok) {
+        // Node Mailer fetch request
+        const accepted = await response.json()
+        const nodeMailer = await fetch("/api/users/signup", {
+          method: "POST", 
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+            userEmail: accepted.email,
+            name: accepted.name
+          })
+        });
+        if (!nodeMailer.ok){
+          alert("failed to send email") 
+        }
+
         document.location.replace("/contProfile");
       } else {
         alert("Failed to create project");
@@ -31,5 +43,9 @@ const delButtonHandler = async (event) => {
     }
   }
 };
+
+// const nodeMailer = async () => {
+  
+// }
 
 document.getElementById("accepted").addEventListener("click", acceptProject);

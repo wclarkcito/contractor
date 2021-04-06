@@ -25,6 +25,7 @@ let MailGenerator = new Mailgen({
 });
 
 const signup = (req, res) => {
+    console.log(req.body)
     const { userEmail, name } = req.body;
 
     // sign up the user .....
