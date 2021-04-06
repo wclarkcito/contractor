@@ -30,4 +30,4 @@ const delButtonHandler = async (event) => {
   }
 };
 
-document.getElementById("accepted").addEventListener("click", acceptProject, delButtonHandler);
+document.getElementById("accepted").addEventListener("click", acceptProject);
