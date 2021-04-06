@@ -1,5 +1,3 @@
-const signup = require('../../config')
-
 const acceptProject = async () => {
     console.log(window.location)
     const id = window.location.pathname.split("/")[2]
@@ -15,6 +13,7 @@ const acceptProject = async () => {
         alert("Failed to create project");
       }
 }
+
 const delButtonHandler = async (event) => {
   if (event.target.hasAttribute("data-id")) {
     const id = event.target.getAttribute("data-id");
@@ -30,7 +29,5 @@ const delButtonHandler = async (event) => {
     }
   }
 };
-
-
 
 document.getElementById("accepted").addEventListener("click", acceptProject, delButtonHandler);

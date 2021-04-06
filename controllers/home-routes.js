@@ -69,6 +69,7 @@ router.get('/profile', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 router.get('/contProfile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
@@ -101,25 +102,40 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/contractor', withAuth, async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Projects }],
-    });
-    
-    const user = userData.get({ plain: true });
-    console.log(user)
-    const projectData = await Projects.findAll();
-    const projects = projectData.map((project) => project.get({ plain: true }));
-
-
-    res.render('contractor', {
-      ...user,
-      projects, // delete later if need to remove unclaimed projects
-      logged_in: true
-    });
+    // const userData = await User.findByPk(req.session.user_id, {
+    //   attributes: { exclude: ['password'] },
+    //   include: [{ model: Projects }],
+    // });
+    // const user = userData.get({ plain: true });
+    // console.log(user)
+    if (req.session.user_type === 'contractor'){
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: Projects }],
+        where: {contractor_id: req.session.user_id}
+      });
+      const user = userData.get({ plain: true });
+      console.log(user)
+      res.render('contractor', {
+        ...user,
+        logged_in: true
+      });
+    } else {
+      const userData = await User.findByPk(req.session.user_id, {
+        attributes: { exclude: ['password'] },
+        include: [{ model: Projects }],
+        where: {homeowner_id: req.session.user_id}
+      });
+      const user = userData.get({ plain: true });
+      console.log(user)
+      res.render('profile', {
+        ...user,
+        logged_in: true
+      });
+    }
   } catch (err) {
     res.status(500).json(err);
   }
