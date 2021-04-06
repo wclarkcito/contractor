@@ -61,8 +61,6 @@ router.get('/profile', withAuth, async (req, res) => {
     // const user = userData.get({ plain: true });
     // console.log(user)
     if (req.session.user_type === 'contractor'){
-
-
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
         include: [{ model: Projects }],
@@ -70,7 +68,6 @@ router.get('/profile', withAuth, async (req, res) => {
       });
       const user = userData.get({ plain: true });
       console.log(user)
-
       res.render('contractor', {
         ...user,
         logged_in: true
