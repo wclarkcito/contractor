@@ -1,3 +1,5 @@
+const nodeMailer = require('../../controller/appController')
+
 const acceptProject = async () => {
     console.log(window.location)
     const id = window.location.pathname.split("/")[2]
