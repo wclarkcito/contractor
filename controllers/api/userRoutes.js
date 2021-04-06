@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const { signup, getBill } = require('../../controller/appController');
 
 // Creates a new user
 // Route located at /api/users/
@@ -65,6 +66,13 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+// Node Mailer routes
+// Route located at /api/users/signup
+router.post('/signup', signup)
+// Route located at /api/users/get-the-bill
+router.post('/get-the-bill', getBill)
+
 
 // Deletes a user by id
 // Route located at /api/users/:id
