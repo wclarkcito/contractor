@@ -1,4 +1,3 @@
-
 const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 
@@ -16,7 +15,6 @@ const transporter = nodemailer.createTransport({
     },
 
 });
-
 
 let MailGenerator = new Mailgen({
     theme: "default",
@@ -96,13 +94,5 @@ const getBill = (req, res) => {
         .catch((error) => console.error(error));
 };
 
+module.exports = {signup, getBill,};
 
-
-
-
-
-
-module.exports = {
-    signup,
-    getBill,
-};

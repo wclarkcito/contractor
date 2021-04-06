@@ -40,7 +40,7 @@ router.post('/', withAuth, async (req, res) => {
   });
 
 // Updates contractor_id on project when contractor bids
-// Route located at /api/projects
+// Route located at /api/projects/:id
 router.put('/:id', withAuth, async (req, res) => {
 try {
     const updatedProject = await Projects.update({
