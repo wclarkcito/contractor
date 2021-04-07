@@ -94,8 +94,8 @@ router.post('/logout', (req, res) => {
 
 // Node Mailer routes
 // Route located at /api/users/signup
+// Email to contractor
 router.post('/signup', (req, res) => {
-  console.log("email to contractor")
   // console.log(req)
   const { userEmail, name } = req.body;
 
@@ -105,7 +105,7 @@ router.post('/signup', (req, res) => {
   let response = {
     body: {
       name,
-      intro: "Your post on Projectimator has been accepted. You will soon be contacted by the contractor about the completion of your project. Thank you!",
+      intro: "Thank you for accpeting the project. Please reach out to the homeowner for further details. ",
     },
   };
 
@@ -114,7 +114,7 @@ router.post('/signup', (req, res) => {
   let message = {
     from: EMAIL,
     to: userEmail,
-    subject: "signup successful",
+    subject: "You have accepted a project on Projectimator",
     html: mail,
   };
   transporter
@@ -130,19 +130,13 @@ router.post('/signup', (req, res) => {
 
 })
 // Route located at /api/users/get-the-bill
+// Email to the Homeowner
 router.post('/get-the-bill', (req, res) => {
-  console.log("email to contractor")
-  console.log(req.body)
   const { userEmail, name } = req.body;
-  console.log(userEmail)
-  console.log(name)
-  // sign up the user .....
-
-  // then send the email
   let response = {
     body: {
       name,
-      intro: "Project has been accepted thank you",
+      intro: "Your post on Projectimator has been accepted. You will soon be contacted by the contractor about the completion of your project. Thank you!",
     },
   };
 
@@ -151,7 +145,7 @@ router.post('/get-the-bill', (req, res) => {
   let message = {
     from: EMAIL,
     to: userEmail,
-    subject: "signup successful",
+    subject: "Project Accepted on Projectimator",
     html: mail,
   };
   transporter
@@ -167,79 +161,5 @@ router.post('/get-the-bill', (req, res) => {
 
 
 })
-
-
-
-
-
-
-
-// Deletes a user by id
-// // Route located at /api/users/:id
-// router.delete('/:id', async (req, res) => {
-//     try {
-//       const deleteUser = await User.destroy({
-//         where: {
-//           id: req.params.id
-//         }
-//       });
-//       res.status(200).json(deleteUser);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-
-// Returns a list of all users
-// Route located at /api/users/
-// router.get("/", async (req, res) => {
-//     try {
-//       const getAllUsers = await User.findAll();
-//       res.status(200).json(getAllUsers);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-
-// Returns a specific user by id
-// Route located at /api/users/:id
-// router.get("/:id", async (req, res) => {
-//     try {
-//       const getOneUser = await User.findByPk(req.params.id, {
-//       });
-//       res.status(200).json(getOneUser);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
-
-// Return only contractors
-// Route located at /api/users/contractors
-// router.get("/contractors", async (req, res) => {
-//   try {
-//     const getContractors = await User.findAll({
-//       where: {
-//         user_type: 'contractor',
-//       }
-//     });
-//     res.status(200).json(getContractors);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
-// Return only homeowners
-// Route located at /api/users/homeowners
-// router.get("/homeowners", async (req, res) => {
-//   try {
-//     const getHomeowners = await User.findAll({
-//       where: {
-//         user_type: 'homeowner',
-//       }
-//     });
-//     res.status(200).json(getHomeowners);
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
 
 module.exports = router;
