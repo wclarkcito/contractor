@@ -13,10 +13,8 @@ const transporter = nodemailer.createTransport({
         user: "nodemailer478@gmail.com",
         pass: 'contractor478'
     },
-    // debug: false,
-    // logger: true
-});
 
+});
 
 let MailGenerator = new Mailgen({
     theme: "default",
@@ -27,6 +25,7 @@ let MailGenerator = new Mailgen({
 });
 
 const signup = (req, res) => {
+    console.log(req.body)
     const { userEmail, name } = req.body;
 
     // sign up the user .....
@@ -57,9 +56,44 @@ const signup = (req, res) => {
         })
         .catch((error) => console.error(error));
 };
+const getBill = (req, res) => {
+    const { name, userEmail } = req.body;
 
-module.exports = {
-    transporter,
-    MailGenerator,
-    signup()
+    let response = {
+        body: {
+            name,
+            intro: "Your bill has arrived!",
+            table: {
+                data: [
+                    {
+                        item: "MERN stack book",
+                        description: "A mern stack book",
+                        price: "$10.99",
+                    },
+                ],
+            },
+            outro: "Looking forward to do more business with you",
+        },
+    };
+
+    let mail = MailGenerator.generate(response);
+
+    let message = {
+        from: EMAIL,
+        to: userEmail,
+        subject: "transaction",
+        html: mail,
+    };
+
+    transporter
+        .sendMail(message)
+        .then(() => {
+            return res
+                .status(200)
+                .json({ msg: "you should receive an email from us" });
+        })
+        .catch((error) => console.error(error));
 };
+
+module.exports = {signup, getBill,};
+

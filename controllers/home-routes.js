@@ -29,27 +29,18 @@ router.get('/', async (req, res) => {
     }
   });
 
-router.get('/projects/:id', async (req, res) => {
-  try {
-    const projectData = await Projects.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-      ],
-    });
-
-    const project = projectData.get({ plain: true });
-    console.log(project);
-    res.render('project', {
-      ...project,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+  router.get('/login', (req, res) => {
+    // If the user is already logged in, redirect the request to another route
+    if (req.session.logged_in && req.session.user_type === "homeowner") {
+      res.redirect('/profile');
+      return;
+    }
+    else if (req.session.logged_in && req.session.user_type === "contractor") {
+      res.redirect('/contProfile');
+      return;
+    }
+    res.render('login');
+  });
 
 router.get('/profile', withAuth, async (req, res) => {
   try {
@@ -61,6 +52,8 @@ router.get('/profile', withAuth, async (req, res) => {
     // const user = userData.get({ plain: true });
     // console.log(user)
     if (req.session.user_type === 'contractor'){
+
+
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
         include: [{ model: Projects }],
@@ -68,6 +61,7 @@ router.get('/profile', withAuth, async (req, res) => {
       });
       const user = userData.get({ plain: true });
       console.log(user)
+
       res.render('contractor', {
         ...user,
         logged_in: true
@@ -108,18 +102,7 @@ router.get('/contProfile', withAuth, async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in && req.session.user_type === "homeowner") {
-    res.redirect('/profile');
-    return;
-  }
-  else if (req.session.logged_in && req.session.user_type === "contractor") {
-    res.redirect('/contractor');
-    return;
-  }
-  res.render('login');
-});
+
 
 router.get('/contractor', withAuth, async (req, res) => {
   try {
@@ -139,6 +122,28 @@ router.get('/contractor', withAuth, async (req, res) => {
       ...user,
       projects, // delete later if need to remove unclaimed projects
       logged_in: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/projects/:id', async (req, res) => {
+  try {
+    const projectData = await Projects.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+      ],
+    });
+
+    const project = projectData.get({ plain: true });
+    console.log(project);
+    res.render('project', {
+      ...project,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);

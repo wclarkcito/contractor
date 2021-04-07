@@ -1,58 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-
-// Returns a list of all users
-// Route located at /api/users/
-router.get("/", async (req, res) => {
-    try {
-      const getAllUsers = await User.findAll();
-      res.status(200).json(getAllUsers);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-// Returns a specific user by id
-// Route located at /api/users/:id
-router.get("/:id", async (req, res) => {
-    try {
-      const getOneUser = await User.findByPk(req.params.id, {
-      });
-      res.status(200).json(getOneUser);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
-
-// Return only contractors
-// Route located at /api/users/contractors
-router.get("/contractors", async (req, res) => {
-  try {
-    const getContractors = await User.findAll({
-      where: {
-        user_type: 'contractor',
-      }
-    });
-    res.status(200).json(getContractors);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// Return only homeowners
-// Route located at /api/users/homeowners
-router.get("/homeowners", async (req, res) => {
-  try {
-    const getHomeowners = await User.findAll({
-      where: {
-        user_type: 'homeowner',
-      }
-    });
-    res.status(200).json(getHomeowners);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+const { signup, getBill } = require('../../controller/appController');
 
 // Creates a new user
 // Route located at /api/users/
@@ -119,19 +67,84 @@ router.post('/logout', (req, res) => {
   }
 });
 
+// Node Mailer routes
+// Route located at /api/users/signup
+router.post('/signup', signup)
+// Route located at /api/users/get-the-bill
+router.post('/get-the-bill', getBill)
+
+
+
+
+
+
+
 // Deletes a user by id
-// Route located at /api/users/:id
-router.delete('/:id', async (req, res) => {
+// // Route located at /api/users/:id
+// router.delete('/:id', async (req, res) => {
+//     try {
+//       const deleteUser = await User.destroy({
+//         where: {
+//           id: req.params.id
+//         }
+//       });
+//       res.status(200).json(deleteUser);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
+
+// Returns a list of all users
+// Route located at /api/users/
+router.get("/", async (req, res) => {
     try {
-      const deleteUser = await User.destroy({
-        where: {
-          id: req.params.id
-        }
-      });
-      res.status(200).json(deleteUser);
+      const getAllUsers = await User.findAll();
+      res.status(200).json(getAllUsers);
     } catch (err) {
       res.status(500).json(err);
     }
   });
+
+// Returns a specific user by id
+// Route located at /api/users/:id
+router.get("/:id", async (req, res) => {
+    try {
+      const getOneUser = await User.findByPk(req.params.id, {
+      });
+      res.status(200).json(getOneUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+// Return only contractors
+// Route located at /api/users/contractors
+// router.get("/contractors", async (req, res) => {
+//   try {
+//     const getContractors = await User.findAll({
+//       where: {
+//         user_type: 'contractor',
+//       }
+//     });
+//     res.status(200).json(getContractors);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// Return only homeowners
+// Route located at /api/users/homeowners
+// router.get("/homeowners", async (req, res) => {
+//   try {
+//     const getHomeowners = await User.findAll({
+//       where: {
+//         user_type: 'homeowner',
+//       }
+//     });
+//     res.status(200).json(getHomeowners);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 module.exports = router;

@@ -1,7 +1,7 @@
 {
   "name": "contractor",
   "version": "1.0.0",
-  "description": "",
+  "description": "## This app will streamline the process for Homeowners who are looking for a Contractor as well as Contractors looking for projects.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,6 +29,7 @@
     "helpers": "0.0.6",
     "mailgen": "^2.0.14",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.5.0",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "sequelize": "^6.6.2",
