@@ -22,7 +22,7 @@ const transporter = nodemailer.createTransport({
 let MailGenerator = new Mailgen({
   theme: "default",
   product: {
-    name: "Nodemailer",
+    name: "Projectimator",
     link: MAIN_URL,
   },
 });
@@ -104,7 +104,7 @@ router.post('/signup', (req, res) => {
   let response = {
     body: {
       name,
-      intro: "Project has been accepted thank you",
+      intro: "Your post on Projectimator has been accepted. You will soon be contacted by the contractor about the completion of your project. Thank you!",
     },
   };
 
@@ -166,8 +166,13 @@ router.post('/get-the-bill', (req, res) => {
 })
 
 
+
+
+
+
+
 // Deletes a user by id
-// Route located at /api/users/:id
+// // Route located at /api/users/:id
 // router.delete('/:id', async (req, res) => {
 //     try {
 //       const deleteUser = await User.destroy({

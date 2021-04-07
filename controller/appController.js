@@ -19,7 +19,7 @@ const transporter = nodemailer.createTransport({
 let MailGenerator = new Mailgen({
     theme: "default",
     product: {
-        name: "Nodemailer",
+        name: "Projectimator",
         link: MAIN_URL,
     },
 });
@@ -34,7 +34,7 @@ const signup = (req, res) => {
     let response = {
         body: {
             name,
-            intro: "Project has been accepted thank you",
+            intro: "Your post on Projectimator has been accepted. You will soon be contacted by the contractor about the completion of your project. Thank you",
         },
     };
 
