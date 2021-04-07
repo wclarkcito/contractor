@@ -43,7 +43,7 @@ const signup = (req, res) => {
     let message = {
         from: EMAIL,
         to: userEmail,
-        subject: "signup successful",
+        subject: "Project Confirmation",
         html: mail,
     };
 
@@ -95,5 +95,5 @@ const getBill = (req, res) => {
         .catch((error) => console.error(error));
 };
 
-module.exports = {signup, getBill,};
+module.exports = { signup, getBill, };
 
