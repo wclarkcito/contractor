@@ -1,24 +1,48 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 const { signup, getBill } = require('../../controller/appController');
+const nodemailer = require("nodemailer");
+const Mailgen = require("mailgen");
 
+const { EMAIL, MAIN_URL } = require("../../config");
+
+
+const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
+
+  secure: false,
+  auth: {
+    user: "nodemailer478@gmail.com",
+    pass: 'contractor478'
+  },
+
+});
+
+let MailGenerator = new Mailgen({
+  theme: "default",
+  product: {
+    name: "Nodemailer",
+    link: MAIN_URL,
+  },
+});
 // Creates a new user
 // Route located at /api/users/
 router.post('/', async (req, res) => {
-    try {
-      const addUser = await User.create(req.body);
+  try {
+    const addUser = await User.create(req.body);
 
-      req.session.save(() => {
-        req.session.user_id = addUser.id;
-        req.session.logged_in = true;
-        req.session.user_type = addUser.user_type;
-  
-        res.status(200).json(addUser);
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+    req.session.save(() => {
+      req.session.user_id = addUser.id;
+      req.session.logged_in = true;
+      req.session.user_type = addUser.user_type;
+
+      res.status(200).json(addUser);
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // User login  
 // Route located at /api/users/login
@@ -32,7 +56,7 @@ router.post('/login', async (req, res) => {
         .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-    
+
     const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
@@ -46,7 +70,7 @@ router.post('/login', async (req, res) => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
       req.session.user_type = userData.user_type;
-      
+
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
@@ -69,9 +93,77 @@ router.post('/logout', (req, res) => {
 
 // Node Mailer routes
 // Route located at /api/users/signup
-router.post('/signup', signup)
+router.post('/signup', (req, res) => {
+  console.log("email to contractor")
+  // console.log(req)
+  const { userEmail, name } = req.body;
+
+  // sign up the user .....
+
+  // then send the email
+  let response = {
+    body: {
+      name,
+      intro: "Project has been accepted thank you",
+    },
+  };
+
+  let mail = MailGenerator.generate(response);
+
+  let message = {
+    from: EMAIL,
+    to: userEmail,
+    subject: "signup successful",
+    html: mail,
+  };
+  transporter
+    .sendMail(message)
+    .then(() => {
+      return res
+        .status(200)
+        .json({ msg: "you should receive an email from us" });
+    })
+    .catch((error) => console.error(error));
+
+
+
+})
 // Route located at /api/users/get-the-bill
-router.post('/get-the-bill', getBill)
+router.post('/get-the-bill', (req, res) => {
+  console.log("email to contractor")
+  console.log(req.body)
+  const { userEmail, name } = req.body;
+
+  // sign up the user .....
+
+  // then send the email
+  let response = {
+    body: {
+      name,
+      intro: "Project has been accepted thank you",
+    },
+  };
+
+  let mail = MailGenerator.generate(response);
+
+  let message = {
+    from: EMAIL,
+    to: userEmail,
+    subject: "signup successful",
+    html: mail,
+  };
+  transporter
+    .sendMail(message)
+    .then(() => {
+      return res
+        .status(200)
+        .json({ msg: "project accepted" });
+    })
+    .catch((error) => console.error(error));
+
+
+
+})
 
 
 // Deletes a user by id
