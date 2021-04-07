@@ -1,12 +1,9 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-// const { signup, getBill } = require('../../controller/appController');
 const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
 require('dotenv').config();
-
 const { EMAIL, MAIN_URL } = require("../../config");
-
 
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
@@ -27,6 +24,7 @@ let MailGenerator = new Mailgen({
     link: MAIN_URL,
   },
 });
+
 // Creates a new user
 // Route located at /api/users/
 router.post('/', async (req, res) => {
@@ -50,7 +48,6 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
-    console.log(userData)
     if (!userData) {
       res
         .status(400)
@@ -94,18 +91,15 @@ router.post('/logout', (req, res) => {
 
 // Node Mailer routes
 // Route located at /api/users/signup
-// Email to contractor
 router.post('/signup', (req, res) => {
-  // console.log(req)
   const { userEmail, name } = req.body;
-
   // sign up the user .....
-
   // then send the email
   let response = {
     body: {
       name,
-      intro: "Thank you for accpeting the project. Please reach out to the homeowner for further details. ",
+      // Email to contractor
+      intro: "Thank you for accepeting the project. Please reach out to the homeowner for further details. ",
     },
   };
 
@@ -130,12 +124,12 @@ router.post('/signup', (req, res) => {
 
 })
 // Route located at /api/users/get-the-bill
-// Email to the Homeowner
 router.post('/get-the-bill', (req, res) => {
   const { userEmail, name } = req.body;
   let response = {
     body: {
       name,
+      // Email to the Homeowner
       intro: "Your post on Projectimator has been accepted. You will soon be contacted by the contractor about the completion of your project. Thank you!",
     },
   };
@@ -151,15 +145,11 @@ router.post('/get-the-bill', (req, res) => {
   transporter
     .sendMail(message)
     .then((data) => {
-      console.log(data)
       return res
         .status(200)
         .json({ msg: "project accepted" });
     })
     .catch((error) => console.error(error));
-
-
-
 })
 
 module.exports = router;

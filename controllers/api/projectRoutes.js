@@ -47,7 +47,6 @@ router.put('/:id', withAuth, async (req, res) => {
     const contractor = await User.findByPk(req.session.user_id)
     const project = await Projects.findByPk(req.params.id)
     const homeowner = await User.findByPk(project.homeowner_id)
-    console.log(homeowner.email)
     const updatedProject = await Projects.update({
       // new info
       contractor_id: req.session.user_id
@@ -61,7 +60,6 @@ router.put('/:id', withAuth, async (req, res) => {
       homeowner
     }
     res.status(200).json(bothParties);
-    // res.status(200).json(homeowner);
   } catch (err) {
     res.status(500).json(err);
   }
