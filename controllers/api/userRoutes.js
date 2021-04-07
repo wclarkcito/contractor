@@ -166,8 +166,13 @@ router.post('/get-the-bill', (req, res) => {
 })
 
 
+
+
+
+
+
 // Deletes a user by id
-// Route located at /api/users/:id
+// // Route located at /api/users/:id
 // router.delete('/:id', async (req, res) => {
 //     try {
 //       const deleteUser = await User.destroy({
@@ -183,26 +188,26 @@ router.post('/get-the-bill', (req, res) => {
 
 // Returns a list of all users
 // Route located at /api/users/
-// router.get("/", async (req, res) => {
-//     try {
-//       const getAllUsers = await User.findAll();
-//       res.status(200).json(getAllUsers);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
+router.get("/", async (req, res) => {
+    try {
+      const getAllUsers = await User.findAll();
+      res.status(200).json(getAllUsers);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 // Returns a specific user by id
 // Route located at /api/users/:id
-// router.get("/:id", async (req, res) => {
-//     try {
-//       const getOneUser = await User.findByPk(req.params.id, {
-//       });
-//       res.status(200).json(getOneUser);
-//     } catch (err) {
-//       res.status(500).json(err);
-//     }
-//   });
+router.get("/:id", async (req, res) => {
+    try {
+      const getOneUser = await User.findByPk(req.params.id, {
+      });
+      res.status(200).json(getOneUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 // Return only contractors
 // Route located at /api/users/contractors
