@@ -90,13 +90,19 @@ router.get('/profile', withAuth, async (req, res) => {
     } else {
       const userData = await User.findByPk(req.session.user_id, {
         attributes: { exclude: ['password'] },
-        include: [{ model: Projects }],
+        // include: [{ model: Projects }],
+        // where: {homeowner_id: req.session.user_id}
+      });
+
+      const projectData = await Projects.findAll({
         where: {homeowner_id: req.session.user_id}
       });
+      const projects = projectData.map((project) => project.get({ plain: true }));
       const user = userData.get({ plain: true });
       console.log(user)
       res.render('profile', {
         ...user,
+        projects,
         logged_in: true
       });
     }
