@@ -1,8 +1,9 @@
 const router = require('express').Router();
 const { User } = require('../../models');
-const { signup, getBill } = require('../../controller/appController');
+// const { signup, getBill } = require('../../controller/appController');
 const nodemailer = require("nodemailer");
 const Mailgen = require("mailgen");
+require('dotenv').config();
 
 const { EMAIL, MAIN_URL } = require("../../config");
 
@@ -13,8 +14,8 @@ const transporter = nodemailer.createTransport({
 
   secure: false,
   auth: {
-    user: "nodemailer478@gmail.com",
-    pass: 'contractor478'
+    user: process.env.DUMMY_NAME,
+    pass: process.env.DUMMY_PASSWORD
   },
 
 });
@@ -133,7 +134,8 @@ router.post('/get-the-bill', (req, res) => {
   console.log("email to contractor")
   console.log(req.body)
   const { userEmail, name } = req.body;
-
+  console.log(userEmail)
+  console.log(name)
   // sign up the user .....
 
   // then send the email
@@ -154,7 +156,8 @@ router.post('/get-the-bill', (req, res) => {
   };
   transporter
     .sendMail(message)
-    .then(() => {
+    .then((data) => {
+      console.log(data)
       return res
         .status(200)
         .json({ msg: "project accepted" });

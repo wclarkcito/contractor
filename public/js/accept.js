@@ -23,10 +23,13 @@ const acceptProject = async () => {
         name: contractor.name
       })
     });
+    // console.log(nodeMailerContractor)
     if (!nodeMailerContractor.ok) {
       alert("failed to send email to contractor")
     }
+    // console.log("trying to send email to homeowner")
     const nodeMailerHomeowner = await fetch("/api/users/get-the-bill", {
+
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -34,6 +37,7 @@ const acceptProject = async () => {
         name: homeowner.name
       })
     });
+    // console.log(nodeMailerHomeowner)
     if (!nodeMailerHomeowner.ok) {
       alert("failed to send email to homeowner")
     }
