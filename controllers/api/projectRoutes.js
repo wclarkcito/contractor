@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Projects, User } = require('../../models');
 const withAuth = require('../../utils/auth')
-const { signup, getBill } = require('../../controller/appController');
 
 // Returns a list of all projects
 // Route located at /api/projects
