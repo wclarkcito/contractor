@@ -1,31 +1,47 @@
 const acceptProject = async () => {
-    console.log(window.location)
-    const id = window.location.pathname.split("/")[2]
-    const response = await fetch(`/api/projects/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }); 
-      if (response.ok) {
-        // Node Mailer fetch request
-        const accepted = await response.json()
-        const nodeMailer = await fetch("/api/users/signup", {
-          method: "POST", 
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({
-            userEmail: accepted.email,
-            name: accepted.name
-          })
-        });
-        if (!nodeMailer.ok){
-          alert("failed to send email") 
-        }
+  console.log(window.location)
+  const id = window.location.pathname.split("/")[2]
+  const response = await fetch(`/api/projects/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  console.log(response)
+  if (response.ok) {
+    // Node Mailer fetch request
+    const accepted = await response.json()
 
-        document.location.replace("/contProfile");
-      } else {
-        alert("Failed to create project");
-      }
+    const { contractor, homeowner } = accepted
+    console.log(contractor)
+    console.log(homeowner)
+    const nodeMailerContractor = await fetch("/api/users/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userEmail: contractor.email,
+        name: contractor.name
+      })
+    });
+    if (!nodeMailerContractor.ok) {
+      alert("failed to send email to contractor")
+    }
+    const nodeMailerHomeowner = await fetch("/api/users/get-the-bill", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userEmail: homeowner.email,
+        name: homeowner.name
+      })
+    });
+    if (!nodeMailerHomeowner.ok) {
+      alert("failed to send email to homeowner")
+    }
+
+    document.location.replace("/contProfile");
+  } else {
+    alert("Failed to create project");
+  }
 }
 
 const delButtonHandler = async (event) => {
@@ -45,7 +61,7 @@ const delButtonHandler = async (event) => {
 };
 
 // const nodeMailer = async () => {
-  
+
 // }
 
 document.getElementById("accepted").addEventListener("click", acceptProject);
