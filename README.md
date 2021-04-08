@@ -49,6 +49,6 @@
 
   ![Screen Shot 2021-04-07 at 3 01 40 PM](https://user-images.githubusercontent.com/73144564/113940354-2b381280-97b2-11eb-8b12-f58f316b091c.png)
   ## Link 
-  https://arcane-dusk-72745.herokuapp.com/
+  [Herokuapp](https://arcane-dusk-72745.herokuapp.com/)
   ## GitHub 
-  https://github.com/wclarkcito/projectimator
+  [Projictimator](https://github.com/wclarkcito/contractor)
