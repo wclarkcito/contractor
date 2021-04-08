@@ -1,5 +1,7 @@
 # Projectimator
+
 ![Contributors](https://img.shields.io/badge/Contributors-4-green)
+
 ### Languages and Tools:
 
 <p align="left">
@@ -24,31 +26,41 @@
 <br />
 
 ---
-  ## Description
-  The purpose of this application is to provide an online service for Homeowners to locate contractors that are able to work within a specified budget; as well as Contractors looking for work. The Homeowner would create and account with an email and password. Once they are logged in they would then provide a description of the project, the budget they have to work with; as well as the specific type of labor they are looking for. They would submit their project to a job board.
 
-  Contractors would also create an account with an email and password. Once they are logged in they would have access to the job board that lists all job postings. Should they choose to accept the posting they would hit the accept button and a confirmation email would be sent out to both the Homeowner and the Contractor.
+## Description
 
-  ## User Story
-  ```md
-  AS A Homeowner I want to be able to post projects to a job board for Contractors to see 
-  SO THAT contractors can accept my projects should it fit their skill set. 
-  
-  AS A Contractor I want to be able to see job postings from Homeowners 
-  SO THAT I have the ability to accept jobs befitting my skillsets.
-  ```
-## Table of Contents 
-  * [Demo](#demo)
-  * [Link](#link)
-  * [GitHub](#github)
-  
-  ## Demo 
-  ![demo](Projectimator.gif)
+The purpose of this application is to provide an online service for Homeowners to locate contractors that are able to work within a specified budget; as well as Contractors looking for work. The Homeowner would create and account with an email and password. Once they are logged in they would then provide a description of the project, the budget they have to work with; as well as the specific type of labor they are looking for. They would submit their project to a job board.
 
-  ![Screen Shot 2021-04-07 at 2 58 14 PM](https://user-images.githubusercontent.com/73144564/113940037-af3dca80-97b1-11eb-84c4-00f8e34a8961.png)
+Contractors would also create an account with an email and password. Once they are logged in they would have access to the job board that lists all job postings. Should they choose to accept the posting they would hit the accept button and a confirmation email would be sent out to both the Homeowner and the Contractor.
 
-  ![Screen Shot 2021-04-07 at 3 01 40 PM](https://user-images.githubusercontent.com/73144564/113940354-2b381280-97b2-11eb-8b12-f58f316b091c.png)
-  ## Link 
-  https://arcane-dusk-72745.herokuapp.com/
-  ## GitHub 
-  https://github.com/wclarkcito/projectimator
+## User Story
+
+```md
+AS A Homeowner I want to be able to post projects to a job board for Contractors to see
+SO THAT contractors can accept my projects should it fit their skill set.
+
+AS A Contractor I want to be able to see job postings from Homeowners
+SO THAT I have the ability to accept jobs befitting my skillsets.
+```
+
+## Table of Contents
+
+- [Demo](#demo)
+- [Link](#link)
+- [GitHub](#github)
+
+## Demo
+
+![demo](Projectimator.gif)
+
+![Screen Shot 2021-04-08 at 4 36 46 PM](https://user-images.githubusercontent.com/73144564/114108823-ce5b5b80-9888-11eb-97d2-e8f71c885d63.png)
+
+![Screen Shot 2021-04-08 at 4 37 15 PM](https://user-images.githubusercontent.com/73144564/114108877-e59a4900-9888-11eb-9367-508a4d483ce1.png)
+
+## Link
+
+https://arcane-dusk-72745.herokuapp.com/
+
+## GitHub
+
+https://github.com/wclarkcito/projectimator
