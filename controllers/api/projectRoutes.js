@@ -1,6 +1,6 @@
-const router = require('express').Router();
-const { Projects, User } = require('../../models');
-const withAuth = require('../../utils/auth')
+const router = require("express").Router();
+const { Projects, User } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 // Returns a list of all projects
 // Route located at /api/projects
@@ -17,8 +17,7 @@ router.get("/", async (req, res) => {
 // Route located at /api/projects/:id
 router.get("/:id", async (req, res) => {
   try {
-    const getOneProject = await Projects.findByPk(req.params.id, {
-    });
+    const getOneProject = await Projects.findByPk(req.params.id, {});
     res.status(200).json(getOneProject);
   } catch (err) {
     res.status(500).json(err);
@@ -27,11 +26,11 @@ router.get("/:id", async (req, res) => {
 
 // Creates a project
 // Route located at /api/projects
-router.post('/', withAuth, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const addProject = await Projects.create({
       ...req.body,
-      homeowner_id: req.session.user_id
+      homeowner_id: req.session.user_id,
     });
     res.status(200).json(addProject);
   } catch (err) {
@@ -41,37 +40,40 @@ router.post('/', withAuth, async (req, res) => {
 
 // Updates contractor_id on project when contractor bids
 // Route located at /api/projects/:id
-router.put('/:id', withAuth, async (req, res) => {
+router.put("/:id", withAuth, async (req, res) => {
   try {
-    const contractor = await User.findByPk(req.session.user_id)
-    const project = await Projects.findByPk(req.params.id)
-    const homeowner = await User.findByPk(project.homeowner_id)
-    const updatedProject = await Projects.update({
-      // new info
-      contractor_id: req.session.user_id
-    }, {
-      where: {
-        id: req.params.id
+    const contractor = await User.findByPk(req.session.user_id);
+    const project = await Projects.findByPk(req.params.id);
+    const homeowner = await User.findByPk(project.homeowner_id);
+    const updatedProject = await Projects.update(
+      {
+        // new info
+        contractor_id: req.session.user_id,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
       }
-    })
+    );
     const bothParties = {
       contractor,
-      homeowner
-    }
+      homeowner,
+    };
     res.status(200).json(bothParties);
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
 // Deletes a project by id
 // Route located at /api/projects/:id
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deleteProject = await Projects.destroy({
       where: {
-        id: req.params.id
-      }
+        id: req.params.id,
+      },
     });
     res.status(200).json(deleteProject);
   } catch (err) {
