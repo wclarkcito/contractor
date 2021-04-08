@@ -29,7 +29,7 @@ header, .project:not(:last-child) {
 
 
 * {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif; background-color: #EFEEE7; font-family: Georgia, "Times New Roman", Times, serif; }
+body {font-family: Verdana, sans-serif; background-color: #EFEEE7;    font-family: Georgia, "Times New Roman", Times, serif; }
 .mySlides {display: none;}
 img {vertical-align: middle;}
 
@@ -91,6 +91,7 @@ img {vertical-align: middle;}
   bottom: 0px;
   background-color: #ede0d4;
   border-top: 4px solid #E5E5E5;
+  margin-top: 20px;
 }
 
 @-webkit-keyframes fade {
