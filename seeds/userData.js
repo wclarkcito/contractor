@@ -15,7 +15,7 @@ const users = [
   },
   {
     name: "Amiko",
-    email: "amiko2k20@aol.com",
+    email: "amiko@aol.com",
     password: "password12345",
     user_type: "homeowner"
   },
