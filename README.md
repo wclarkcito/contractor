@@ -40,7 +40,7 @@
 ## Table of Contents 
   * [Demo](#demo)
   * [Link](#link)
-  * [GitHub](#questions)
+  * [GitHub](#github)
   
   ## Demo 
   ![demo](Projectimator.gif)
@@ -51,4 +51,4 @@
   ## Link 
   https://arcane-dusk-72745.herokuapp.com/
   ## GitHub 
-  https://github.com/wclarkcito/contractor
+  https://github.com/wclarkcito/projectimator
