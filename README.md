@@ -1,31 +1,54 @@
 # Projectimator
+![Contributors](https://img.shields.io/badge/Contributors-4-green)
+### Languages and Tools:
 
-## This app will streamline the process for Homeowners who are looking for a Contractor as well as Contractors looking for projects.
+<p align="left">
+<a href="https://www.w3.org/html/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="HTML" width="40" height="40"/></a> 
+<a href="https://www.w3schools.com/css/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="CSS" width="40" height="40"/></a> 
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="JavaScript" width="40" height="40"/></a> 
+<a href="https://nodejs.org" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" width="40" height="40"/></a> 
+<img alt="npm" width="35px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/npm/npm-original-wordmark.svg"/>
+<a href="https://expressjs.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/></a> 
+<img alt="sequelize" width="35px" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sequelize/sequelize-original.svg"/>
+<a href="https://insomnia.rest/" target="_blank"> <img src="https://raw.githubusercontent.com/gilbarbara/logos/master/logos/insomnia.svg" alt="Insomnia" width="40" height="40"/></a>
+<a href="https://nodemailer.com/about/" target="_blank"> <img src="https://raw.githubusercontent.com/nodemailer/nodemailer/master/assets/nm_logo_400x272.png" alt="Nodemailer" width="40" height="40"/></a>
+<img alt="SQL" width="35px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/sql/sql.png"/>
+<a href="https://www.mysql.com/" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/></a> 
+<a href="https://heroku.com" target="_blank"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/></a> 
+<a href="https://getbootstrap.com" target="_blank"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/></a>  
+<a href="https://git-scm.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/></a> 
+<img alt="GitHub" width="35px" src="https://raw.githubusercontent.com/github/explore/78df643247d429f6cc873026c0622819ad797942/topics/github/github.png"/>
+<img alt="Visual Studio Code" width="35px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png"/>
+</p>
 
-# User Story
+<br />
 
-## As a new Homeowner I want to be able to post projects to a job board for Contractors to see and accept should it fit their skill set. As a Contractor I want to be able to see job postings from Homeowners and have the ability to accept jobs befitting my skillsets.
+---
+  ## Description
+  The purpose of this application is to provide an online service for Homeowners to locate contractors that are able to work within a specified budget; as well as Contractors looking for work. The Homeowner would create and account with an email and password. Once they are logged in they would then provide a description of the project, the budget they have to work with; as well as the specific type of labor they are looking for. They would submit their project to a job board.
 
-# Description
+  Contractors would also create an account with an email and password. Once they are logged in they would have access to the job board that lists all job postings. Should they choose to accept the posting they would hit the accept button and a confirmation email would be sent out to both the Homeowner and the Contractor.
 
-## The purpose of this application is to provide an online service for Homeowners to locate contractors that are able to work within a specified budget; as well as Contractors looking for work. The Homeowner would create and account with an email and password. Once they are logged in they would then provide a description of the project, the budget they have to work with; as well as the specific type of labor they are looking for. They would submit their project to a job board.
+  ## User Story
+  ```md
+  AS A Homeowner I want to be able to post projects to a job board for Contractors to see 
+  SO THAT contractors can accept my projects should it fit their skill set. 
+  
+  AS A Contractor I want to be able to see job postings from Homeowners 
+  SO THAT I have the ability to accept jobs befitting my skillsets.
+  ```
+## Table of Contents 
+  * [Demo](#demo)
+  * [Link](#link)
+  * [GitHub](#questions)
+  
+  ## Demo 
+  ![demo](Projectimator.gif)
 
-## Contractors would also create an account with an email and password. Once they are logged in they would have access to the job board that lists all job postings. Should they choose to accept the posting they would hit the accept button and a confirmation email would be sent out to both the Homeowner and the Contractor.
+  ![Screen Shot 2021-04-07 at 2 58 14 PM](https://user-images.githubusercontent.com/73144564/113940037-af3dca80-97b1-11eb-84c4-00f8e34a8961.png)
 
-![demo](Projectimator.gif)
-
-![Screen Shot 2021-04-07 at 2 58 14 PM](https://user-images.githubusercontent.com/73144564/113940037-af3dca80-97b1-11eb-84c4-00f8e34a8961.png)
-
-![Screen Shot 2021-04-07 at 3 01 40 PM](https://user-images.githubusercontent.com/73144564/113940354-2b381280-97b2-11eb-8b12-f58f316b091c.png)
-
-# Tools
-
-## This application was built using Javascript,Express, Node.js, Handlebars, MySql, Sequelize,Insomnia, npm nodemailer, HTML, CSS and Bootstrap. It is Deployed by Heroku and GitHub.
-
-# link to Github Repository
-
-## https://github.com/wclarkcito/contractor
-
-# link to Heroku
-
-## https://arcane-dusk-72745.herokuapp.com/
+  ![Screen Shot 2021-04-07 at 3 01 40 PM](https://user-images.githubusercontent.com/73144564/113940354-2b381280-97b2-11eb-8b12-f58f316b091c.png)
+  ## Link 
+  https://arcane-dusk-72745.herokuapp.com/
+  ## GitHub 
+  https://github.com/wclarkcito/contractor
