@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-const path = require("path");
-const express = require("express");
-const session = require("express-session");
-const exphbs = require("express-handlebars");
-const routes = require("./controllers");
-const helpers = require("./utils/helpers.js");
-const sequelize = require("./config/connection");
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
-//const appRoute = require("./routes/appRoute.js");   // nodemailer
-=======
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
@@ -17,7 +6,6 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers.js');
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
->>>>>>> 119818aa7b85e20654524c4be3129c09e312bb02
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -45,11 +33,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(routes);
 
-<<<<<<< HEAD
-// app.use("/api/", appRoute);     // nodemailer
-
-=======
->>>>>>> 119818aa7b85e20654524c4be3129c09e312bb02
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log("Now listening"));
 });
