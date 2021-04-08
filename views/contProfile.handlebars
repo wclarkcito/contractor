@@ -4,9 +4,17 @@
   </div>
 </div>
 
+
 <div class="row mt-4">
-  <div class="col-md-12">
-    <h3>Job accepted</h3>
+  <div class="row col-md-12">
+    <div class="col-md-6">
+      <h3>Job accepted</h3>
+
+    </div >
+    <div class="col-md-6">
+      <h4> <a href="/contractor" style="color: #845a39">View all Projects</a> </h4>
+
+    </div>
 
     <hr>
     {{#if projects.length}}
@@ -15,17 +23,17 @@
       {{#each projects as |project|}}
       <div class="row mb-2">
         <div class="col-md-8">
-          <h4><a href="/projects/{{project.id}}">{{project.title}}</a></h4>
+          <h4><a href="/projects/{{project.id}}" style="color: #845a39" ;>{{project.title}}</a></h4>
         </div>
         <div class="col-md-4">
-          <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
+          <button class="btn btn-sm btn-secondary" data-id="{{project.id}}">Delete</button>
         </div>
       </div>
       {{/each}}
     </div>
     {{/if}}
-    <hr>
-    <h3> <a href="/contractor">View All Projects</a> </h3>
+
+
   </div>
 
 </div>
