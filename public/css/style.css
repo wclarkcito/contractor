@@ -29,7 +29,7 @@ header, .project:not(:last-child) {
 
 
 * {box-sizing: border-box;}
-body {font-family: Verdana, sans-serif; background-color: #EFEEE7;    font-family: Georgia, "Times New Roman", Times, serif; }
+body {font-family: "SF Pro Text"; background-color: #EFEEE7; ; }
 .mySlides {display: none;}
 img {vertical-align: middle;}
 
@@ -83,15 +83,19 @@ img {vertical-align: middle;}
   animation-duration: 1.5s;
 }
 
+#paragraph{
+  font-family: 'Kiwi Maru', serif;
+}
+
 .footer {
   text-align: center;
   width: 100%;
   color: #343a40;
   position: fixed;
   bottom: 0px;
-  background-color: #ede0d4;
+  background-color: #e5d4c3;
   border-top: 4px solid #E5E5E5;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 @-webkit-keyframes fade {
