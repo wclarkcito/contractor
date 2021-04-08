@@ -20,7 +20,7 @@
 
 # Tools
 
-## This application was built using Express, Node.js, Handlebars, as well as Javascript.
+## This application was built using Javascript,Express, Node.js, Handlebars, MySql, Sequelize,Insomnia, npm nodemailer, HTML, CSS and Bootstrap. It is Deployed by Heroku and GitHub.
 
 # link to Github Repository
 
