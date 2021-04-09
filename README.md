@@ -51,7 +51,6 @@ SO THAT I have the ability to accept jobs befitting my skillsets.
 
 ## Demo
 
-![demo](Projectimator.gif)
 
 ![Screen Shot 2021-04-08 at 4 36 46 PM](https://user-images.githubusercontent.com/73144564/114108823-ce5b5b80-9888-11eb-97d2-e8f71c885d63.png)
 
@@ -59,8 +58,8 @@ SO THAT I have the ability to accept jobs befitting my skillsets.
 
 ## Link
 
-https://arcane-dusk-72745.herokuapp.com/
+[Heroku](https://arcane-dusk-72745.herokuapp.com/)
 
 ## GitHub
 
-https://github.com/wclarkcito/projectimator
+[Projectimator](https://github.com/wclarkcito/contractor)
