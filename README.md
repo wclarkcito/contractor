@@ -51,16 +51,14 @@ SO THAT I have the ability to accept jobs befitting my skillsets.
 
 ## Demo
 
-![demo](Projectimator.gif)
-
 ![Screen Shot 2021-04-08 at 4 36 46 PM](https://user-images.githubusercontent.com/73144564/114108823-ce5b5b80-9888-11eb-97d2-e8f71c885d63.png)
 
 ![Screen Shot 2021-04-08 at 4 37 15 PM](https://user-images.githubusercontent.com/73144564/114108877-e59a4900-9888-11eb-9367-508a4d483ce1.png)
 
-## Link
+## Link to deployed application
 
-https://arcane-dusk-72745.herokuapp.com/
+[heroku]https://arcane-dusk-72745.herokuapp.com/
 
 ## GitHub
 
-https://github.com/wclarkcito/projectimator
+https://github.com/wclarkcito/contractor
